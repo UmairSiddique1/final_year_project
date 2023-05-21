@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:andoid="http://schemas.android.com/apk/res-auto"
+    tools:context=".HallDetailActivity">
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/imageslider"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        andoid:iss_delay="0"
+        andoid:iss_period="3000"
+        andoid:iss_auto_cycle="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_hallName"
+        android:layout_below="@id/imageslider"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/_1sdp"
+        android:padding="@dimen/_1sdp"
+        android:layout_below="@id/tv_hallName"
+        android:id="@+id/ll2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Number: "
+            android:textStyle="bold"
+            android:layout_below="@id/tv_hallName"
+            android:textSize="18sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_contactNo"/>
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/_1sdp"
+    android:padding="@dimen/_1sdp"
+    android:id="@+id/ll3"
+    android:layout_below="@+id/ll2">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu: "
+        android:textStyle="bold"
+        android:textSize="18sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_menu" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/_1sdp"
+        android:padding="@dimen/_1sdp"
+        android:id="@+id/ll4"
+        android:layout_below="@+id/ll3">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location: "
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_location" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/_1sdp"
+        android:padding="@dimen/_1sdp"
+        android:id="@+id/ll5"
+        android:layout_below="@+id/ll4">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address: "
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_address"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/_1sdp"
+        android:padding="@dimen/_1sdp"
+        android:id="@+id/ll6"
+        android:layout_below="@+id/ll5">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Per Head Charges"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_perHeadCharges" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/_1sdp"
+        android:padding="@dimen/_1sdp"
+        android:id="@+id/ll1"
+        android:layout_below="@+id/ll6"
+        android:gravity="center">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Let's Chat"
+            android:id="@+id/btn_chat"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/design_default_color_error"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_chat"
+            android:layout_centerInParent="true"
+            android:text="Call now"
+            android:id="@+id/btn_call"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/design_default_color_error"/>
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll1"
+        android:layout_centerInParent="true"
+        android:text="Show Location on Map"
+        android:id="@+id/btn_googlemap"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/design_default_color_error"/>
+
+</RelativeLayout>

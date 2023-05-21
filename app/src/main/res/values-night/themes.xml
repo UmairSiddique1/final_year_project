@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.BookAVenue" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.BookAVenue.CustomActivity" parent="Theme.AppCompat.Dialog">
+        <!-- Override the necessary attributes for the specific activity -->
+        <item name="android:windowActionBar">true</item>
+        <item name="android:windowNoTitle">false</item>
+        <!-- Add any other necessary attributes here -->
+    </style>
+    <!--below is the custom theme which we will be using for our Login Screen-->
+    <!--We are using no action bar theme for our Login screen-->
+<!--    <style name="Theme" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        &lt;!&ndash;below line is for setting our text color to black&ndash;&gt;-->
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--        &lt;!&ndash;we are setting our primary color to green&ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/purple_500</item>-->
+<!--        &lt;!&ndash;we are setting our primary color dark to green&ndash;&gt;-->
+<!--        <item name="colorPrimaryDark">@color/purple_500</item>-->
+<!--        &lt;!&ndash;we are setting our edittext color to black&ndash;&gt;-->
+<!--        <item name="android:editTextColor">@color/black</item>-->
+<!--        &lt;!&ndash;we are setting our window background color to white&ndash;&gt;-->
+<!--        <item name="android:windowBackground">@color/white</item>-->
+<!--    </style>-->
+</resources>

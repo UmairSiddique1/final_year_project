@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "539494466509",
+    "project_id": "umair-6c20f",
+    "storage_bucket": "umair-6c20f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539494466509:android:18495d0a8c76a56ab13a84",
+        "android_client_info": {
+          "package_name": "com.example.bookavenue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539494466509-lubu1h8g17f75ru02mn0qkmtdh022eqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxS49231_5I-ztg8_PMKCZ6kTqdJzPVao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "539494466509-lubu1h8g17f75ru02mn0qkmtdh022eqn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

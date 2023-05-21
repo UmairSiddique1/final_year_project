@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="330dp"
+    android:layout_margin="10dp"
+    android:padding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:id="@+id/iv_hall"
+    android:scaleType="centerCrop"
+    />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_below="@id/iv_hall"
+        android:id="@+id/tv_hallName"
+        android:fontFamily="@font/semibold"
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/tv_hallName"
+    android:id="@+id/ll1"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location: "
+        android:textSize="@dimen/_18ssp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/semibold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_10ssp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/regular_poppin"
+        android:id="@+id/tv_cityName"/>
+    <com.like.LikeButton
+        app:icon_type="heart"
+        app:icon_size="25dp"
+        android:id="@+id/starbutton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:anim_scale_factor="2"
+        app:dots_primary_color="@color/yellow"
+        app:dots_secondary_color="@color/black"/>
+</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ratings: "
+
+                android:textSize="@dimen/_18ssp"
+                android:fontFamily="@font/medium_poppin" />
+            <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:progressTint="@color/yellow"
+            android:layout_below="@id/tv_hallName"
+            android:rating="1"
+            />
+
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
