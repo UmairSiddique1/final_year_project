@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.bookavenue.Adapters.ChatAdapter
 import com.example.bookavenue.Models.MessageModel
+import com.example.bookavenue.R
 import com.example.bookavenue.databinding.ActivitySpChat2Binding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -38,6 +40,8 @@ database= FirebaseDatabase.getInstance()
         binding.tvSpChatHallName.text = intent.getStringExtra("name")
          senderUid = FirebaseAuth.getInstance().uid
         receiverUid = intent.getStringExtra("getUid")
+        val profileimg=intent.getStringExtra("profileimg")
+        Glide.with(applicationContext).load(profileimg).placeholder(R.drawable.ic_profile).into(binding.spProfileImage)
         senderRoom = senderUid + receiverUid
         receiverRoom = receiverUid + senderUid
         message=ArrayList()

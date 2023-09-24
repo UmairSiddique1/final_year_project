@@ -1,3 +1,3 @@
 package com.example.bookavenue.Models
 
-data class SpUserModel(var name:String?="",var image:String?="",var uid:String?="")
+data class SpUserModel(var name:String?="",var profileimg:String?="",var uid:String?="")

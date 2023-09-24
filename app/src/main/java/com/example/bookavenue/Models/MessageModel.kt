@@ -6,7 +6,7 @@ class MessageModel{
     var senderId: String? = null
     var timeStamp: Long = 0
     var imageUrls:String?=null
-
+var isRead:Boolean?=false
         constructor(){}
     constructor(
         message: String?,

@@ -1,6 +1,7 @@
 package com.example.bookavenue.Adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bookavenue.Models.FavouriteModel
 import com.example.bookavenue.R
+import com.example.bookavenue.user.FavHallDetailActivity
 
 class LikeAdapter(val context: Context, private val userInterfaceModel: List<FavouriteModel>): RecyclerView.Adapter<LikeAdapter.ViewHolder>() {
 
@@ -24,6 +26,18 @@ class LikeAdapter(val context: Context, private val userInterfaceModel: List<Fav
         holder.hallName.text=userInterfacePosition.hallName.toString()
         holder.cityName.text=userInterfacePosition.cityName.toString()
 Glide.with(context).load(userInterfacePosition.imageUrl).into(holder.imgRes)
+
+        holder.itemView.setOnClickListener {
+            val intent=Intent(context,FavHallDetailActivity::class.java)
+            intent.putExtra("hallName",userInterfacePosition.hallName.toString())
+            intent.putExtra("cityName",userInterfacePosition.cityName.toString())
+            intent.putExtra("address",userInterfacePosition.address.toString())
+            intent.putExtra("menu",userInterfacePosition.menu.toString())
+            intent.putExtra("contactNo",userInterfacePosition.contactNo.toString())
+            intent.putExtra("perHeadCharges",userInterfacePosition.perHeadCharges.toString())
+            intent.putExtra("uid",userInterfacePosition.getUid.toString())
+            context.startActivity(intent)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

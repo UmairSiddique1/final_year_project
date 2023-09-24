@@ -1,28 +1,34 @@
 package com.example.bookavenue
 
-import android.R
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bookavenue.databinding.ActivityFirebaseUiBinding
+import com.example.bookavenue.user.UserHomeActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.AuthUI.IdpConfig
 import com.firebase.ui.auth.AuthUI.IdpConfig.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.initialize
 
 
 class FirebaseUIActivity : AppCompatActivity() {
     private lateinit var mFirebaseAuth: FirebaseAuth
     private lateinit var mAuthStateListener: FirebaseAuth.AuthStateListener
 
-    var providers: List<IdpConfig> = listOf( // below is the line for adding
+    private var providers: List<IdpConfig> = listOf( // below is the line for adding
         // email and password authentication.
         EmailBuilder().build(),  // below line is used for adding google
         // authentication builder in our app.
-        GoogleBuilder().build(),  // below line is used for adding phone
+        GoogleBuilder().build(),
+        // below line is used for adding phone
         // authentication builder in our app.
-        PhoneBuilder().build())
+        PhoneBuilder().build(),
+        TwitterBuilder().build(),
+        GitHubBuilder().build()
+        )
     private lateinit var binding:ActivityFirebaseUiBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,8 +74,7 @@ class FirebaseUIActivity : AppCompatActivity() {
                         .setAvailableProviders(providers) // below line is for customizing our theme for
                         // login screen and set logo method is used for
                         // adding logo for our login page.
-                        .setLogo(R.drawable.ic_dialog_alert)
-                        .setTheme(R.style.Theme) // after setting our theme and logo
+                        .setTheme(com.example.bookavenue.R.style.Theme_BookAVenue) // after setting our theme and logo
                         // we are calling a build() method
                         // to build our login screen.
                         .build(),  // and lastly we are passing our const

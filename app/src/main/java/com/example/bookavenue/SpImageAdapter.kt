@@ -34,21 +34,21 @@ val image: ImageView =view.findViewById(R.id.iv_layoutSpImg)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Glide.with(context).load(imageUrl[position].image).into(holder.image)
-        holder.itemView.setOnLongClickListener {
-            val builder = AlertDialog.Builder(activity)
-            builder.setTitle("Delete")
-            builder.setMessage("Are you sure you want to delete this User")
-                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
-FirebaseDatabase.getInstance().getReference("hall data").child(FirebaseAuth.getInstance().currentUser!!.uid)
-    .child("photoUrl").child("img$position").removeValue()
-                })
-                .setNegativeButton("No",
-                    DialogInterface.OnClickListener { dialog, id ->
-                        // User cancelled the dialog
-                    })
-            builder.create().show()
-            true
-        }
+//        holder.itemView.setOnLongClickListener {
+//            val builder = AlertDialog.Builder(activity)
+//            builder.setTitle("Delete")
+//            builder.setMessage("Are you sure you want to delete this User")
+//                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+//FirebaseDatabase.getInstance().getReference("hall data").child(FirebaseAuth.getInstance().currentUser!!.uid)
+//    .child("photoUrl").child("img$position").removeValue()
+//                })
+//                .setNegativeButton("No",
+//                    DialogInterface.OnClickListener { dialog, id ->
+//                        // User cancelled the dialog
+//                    })
+//            builder.create().show()
+//            true
+//        }
     }
 
     override fun getItemCount(): Int {

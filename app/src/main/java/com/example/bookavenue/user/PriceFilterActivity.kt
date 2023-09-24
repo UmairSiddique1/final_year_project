@@ -1,10 +1,9 @@
-package com.example.bookavenue
+package com.example.bookavenue.user
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bookavenue.Fragments.HomeFragment
 import com.example.bookavenue.databinding.ActivityPriceFilterBinding
 
 class PriceFilterActivity : AppCompatActivity() {
@@ -22,7 +21,7 @@ class PriceFilterActivity : AppCompatActivity() {
             editor.putInt("from", priceFrom)
             editor.putInt("to",priceTo)
             editor.apply()
-           startActivity(Intent(applicationContext,UserHomeActivity::class.java))
+           startActivity(Intent(applicationContext, UserHomeActivity::class.java))
         }
     }
 }

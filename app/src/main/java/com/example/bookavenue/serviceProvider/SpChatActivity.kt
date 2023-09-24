@@ -16,7 +16,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class SpChatActivity : AppCompatActivity() {
+class SpChatActivity : AppCompatActivity(){
     private lateinit var binding: ActivitySpChatBinding
     private lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +65,7 @@ val spUserModel1:MutableList<SpUserModel> =ArrayList()
                 for(dataSnapshot:DataSnapshot in snapshot.children){
                     val users=dataSnapshot.getValue(SpUserModel::class.java)
                     if (users != null) {
-                        spUserModel1.add(users)
+                        spUserModel1.add(SpUserModel(users.name,users.profileimg,users.uid))
                     }
                 }
                 spUsersAdapter.notifyDataSetChanged()

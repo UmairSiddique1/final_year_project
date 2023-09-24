@@ -4,21 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:andoid="http://schemas.android.com/apk/res-auto"
-    tools:context=".HallDetailActivity">
+    tools:context=".user.HallDetailActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_220sdp"
+    android:id="@+id/view1"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:textStyle="bold"/>
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/imageslider"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         andoid:iss_delay="0"
-        andoid:iss_period="3000"
+        andoid:iss_period="4000"
         andoid:iss_auto_cycle="true"/>
+</LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_hallName"
-        android:layout_below="@id/imageslider"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:layout_margin="@dimen/_1sdp"
+        android:padding="@dimen/_1sdp"
+        android:fontFamily="@font/londrinasolid_regular"
+        android:layout_below="@id/view1"
+        android:textSize="@dimen/_18ssp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,13 +45,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Contact Number: "
-            android:textStyle="bold"
-            android:layout_below="@id/tv_hallName"
-            android:textSize="18sp"/>
+            android:textSize="@dimen/_18ssp"
+            android:fontFamily="@font/londrinasolid_regular"
+          />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_contactNo"/>
+            android:id="@+id/tv_contactNo"
+            android:fontFamily="@font/londrinasolid_light"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_14ssp"
+            android:gravity="center"
+          />
     </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
@@ -51,12 +70,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Menu: "
-        android:textStyle="bold"
-        android:textSize="18sp"/>
+        android:fontFamily="@font/londrinasolid_regular"
+
+        android:textSize="@dimen/_18ssp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_menu" />
+        android:id="@+id/tv_menu"
+        android:layout_gravity="center"
+        android:fontFamily="@font/londrinasolid_light"
+        android:textSize="@dimen/_14ssp" />
 </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,12 +93,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Location: "
-            android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:fontFamily="@font/londrinasolid_regular"
+            android:textSize="@dimen/_18ssp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_location" />
+            android:id="@+id/tv_location"
+            android:layout_gravity="center"
+            android:fontFamily="@font/londrinasolid_light"
+            android:textSize="@dimen/_14ssp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,12 +115,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Address: "
-            android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:fontFamily="@font/londrinasolid_regular"
+            android:textSize="@dimen/_18ssp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_address"/>
+            android:id="@+id/tv_address"
+            android:textSize="@dimen/_14ssp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/londrinasolid_light"
+          />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -107,13 +137,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Per Head Charges"
-            android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:text="Per-Head Charges: "
+
+            android:fontFamily="@font/londrinasolid_regular"
+
+            android:textSize="@dimen/_18ssp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_perHeadCharges" />
+            android:id="@+id/tv_perHeadCharges"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/londrinasolid_light"
+            android:layout_gravity="center"
+           />
     </LinearLayout>
 
     <LinearLayout
@@ -129,18 +165,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Let's Chat"
+            android:fontFamily="@font/londrinasolid_regular"
             android:id="@+id/btn_chat"
             android:textColor="@color/white"
-            android:backgroundTint="@color/design_default_color_error"/>
+            android:backgroundTint="@color/yellow"/>
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btn_chat"
             android:layout_centerInParent="true"
             android:text="Call now"
+            android:fontFamily="@font/londrinasolid_regular"
             android:id="@+id/btn_call"
             android:textColor="@color/white"
-            android:backgroundTint="@color/design_default_color_error"/>
+            android:backgroundTint="@color/yellow"/>
     </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
@@ -148,8 +186,8 @@
         android:layout_below="@id/ll1"
         android:layout_centerInParent="true"
         android:text="Show Location on Map"
+        android:fontFamily="@font/londrinasolid_regular"
         android:id="@+id/btn_googlemap"
         android:textColor="@color/white"
-        android:backgroundTint="@color/design_default_color_error"/>
-
+        android:backgroundTint="@color/yellow"/>
 </RelativeLayout>

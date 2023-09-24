@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".serviceProvider.SpProfileInfo">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,13 +13,20 @@
         android:gravity="center"
         android:id="@+id/ll1">
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:id="@+id/iv_sp_profile"/>
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:id="@+id/iv_sp_profile"
+            android:background="@drawable/profile_img_bg"
+            android:padding="@dimen/_2sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:src="@drawable/ic_profile"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
+           android:fontFamily="@font/londrinasolid_regular"
+            android:layout_margin="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:gravity="center"
             android:id="@+id/tv_sp_profile"/>
     </LinearLayout>
 <LinearLayout
@@ -31,16 +39,21 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:id="@+id/cardView1">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:fontFamily="@font/londrinasolid_regular"
                 android:textSize="@dimen/_18ssp"
                 android:text="Hall Name: "/>
             <TextView
@@ -48,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14ssp"
                 android:textStyle="normal"
+                android:fontFamily="@font/londrinasolid_light"
                 android:id="@+id/tv_profileHallName"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -56,23 +70,28 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:id="@+id/cardView2">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+              android:fontFamily="@font/londrinasolid_regular"
                 android:textSize="@dimen/_18ssp"
                 android:text="City Name: "/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14ssp"
-                android:textStyle="normal"
+            android:fontFamily="@font/londrinasolid_light"
                 android:id="@+id/tv_profileCityName"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -81,23 +100,28 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:id="@+id/cardView3">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+         android:fontFamily="@font/londrinasolid_regular"
                 android:textSize="@dimen/_18ssp"
                 android:text="Hall Address: "/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14ssp"
-                android:textStyle="normal"
+                android:fontFamily="@font/londrinasolid_light"
                 android:id="@+id/tv_profileAddress"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -106,23 +130,28 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:id="@+id/cardView4">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+              android:fontFamily="@font/londrinasolid_regular"
                 android:textSize="@dimen/_18ssp"
                 android:text="Contact Number: "/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14ssp"
-                android:textStyle="normal"
+              android:fontFamily="@font/londrinasolid_light"
                 android:id="@+id/tv_profileContactNo"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -131,23 +160,28 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:id="@+id/cardView5">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+              android:fontFamily="@font/londrinasolid_regular"
                 android:textSize="@dimen/_18ssp"
                 android:text="Hall Menu: "/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14ssp"
-                android:textStyle="normal"
+             android:fontFamily="@font/londrinasolid_light"
                 android:id="@+id/tv_profileMenu"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -156,23 +190,28 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:id="@+id/cardView6">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+               android:fontFamily="@font/londrinasolid_regular"
                 android:textSize="@dimen/_18ssp"
                 android:text="Hall Per-Head Charges: "/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_14ssp"
-                android:textStyle="normal"
+              android:fontFamily="@font/londrinasolid_light"
                 android:id="@+id/tv_profilePerHead"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -181,16 +220,21 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:id="@+id/cardView_images">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
+               android:fontFamily="@font/londrinasolid_regular"
                 android:textSize="@dimen/_18ssp"
                 android:text="Hall Images"/>
         </LinearLayout>

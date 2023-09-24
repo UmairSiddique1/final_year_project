@@ -22,9 +22,11 @@ class ProviderSignInActivity : AppCompatActivity() {
         binding = ActivityProviderSignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+
         binding.providerSignInTV.setOnClickListener {
             startActivity(Intent(applicationContext, MainActivity::class.java))
         }
+
         binding.providerSignInBtn.setOnClickListener {
             val signInEmail: String = binding.providerSignInEmailET.text.toString()
             val signInPass: String = binding.providerSignInPasswordET.text.toString()

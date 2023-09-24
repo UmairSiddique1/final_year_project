@@ -1,18 +1,21 @@
 package com.example.bookavenue.user
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bookavenue.UserHomeActivity
+import com.example.bookavenue.FirebaseUIActivity
+import com.example.bookavenue.R
 import com.example.bookavenue.databinding.ActivityUserSigninBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -21,76 +24,88 @@ class UserSigninActivity : AppCompatActivity() {
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var binding: ActivityUserSigninBinding
     private lateinit var auth: FirebaseAuth
-//private lateinit var  mGoogleSignInClient:GoogleSignInClient
-    val RC_SIGN_IN = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityUserSigninBinding.inflate(layoutInflater)
+        binding = ActivityUserSigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        auth = Firebase.auth
-binding.userSigninTV.setOnClickListener {
- startActivity(Intent(applicationContext,UserSignUpActivity::class.java))
-}
+        auth = FirebaseAuth.getInstance()
+
+        binding.userSigninTV.setOnClickListener {
+            startActivity(Intent(applicationContext, UserSignUpActivity::class.java))
+        }
+
+
 
         binding.userSigninBtn.setOnClickListener {
-        val userEmail:String=binding.userSigninEmailET.text.toString()
-            val userPass:String=binding.userSigninPassET.text.toString()
+            val userEmail: String = binding.userSigninEmailET.text.toString()
+            val userPass: String = binding.userSigninPassET.text.toString()
             auth.signInWithEmailAndPassword(userEmail, userPass)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                   Toast.makeText(applicationContext,"Successful",Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(applicationContext,UserHomeActivity::class.java))
+                        Toast.makeText(applicationContext, "Successful", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(applicationContext, UserHomeActivity::class.java))
                     } else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(applicationContext,"Failure occur",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "Failure occur", Toast.LENGTH_SHORT).show()
                     }
                 }
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build()
-             mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         }
-        binding.userGoogleBtn.setOnClickListener {
-          signIn()
-        }
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+       binding.btnLogin.setOnClickListener {
+           startActivity(Intent(applicationContext,FirebaseUIActivity::class.java))
+       }
     }
 
     override fun onStart() {
         super.onStart()
-
-            // Check if user is signed in (non-null) and update UI accordingly.
-            val currentUser = auth.currentUser
-            if(currentUser != null){
-               startActivity(Intent(applicationContext,UserHomeActivity::class.java))
-            }
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            startActivity(Intent(applicationContext, UserHomeActivity::class.java))
+        }
     }
+
     private fun signIn() {
-        val signInIntent1 = mGoogleSignInClient.signInIntent
-
-        startActivityForResult(signInIntent1, RC_SIGN_IN)
+        val signInIntent = mGoogleSignInClient.signInIntent
+       launcher.launch(signInIntent)
     }
+private val launcher=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+    result->
+    if(result.resultCode==Activity.RESULT_OK){
+        val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        handleSignInResult(task)
+    }
+}
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            val task: Task<GoogleSignInAccount> =
-                GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        if(completedTask.isSuccessful){
+val account:GoogleSignInAccount?=completedTask.result
+            if(account!=null){
+                updateUI(account)
+            }
         }
-    }
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>){
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            // Signed in successfully, Update the UI here
-            Toast.makeText(applicationContext, "Sign in successful", Toast.LENGTH_SHORT).show()
-        } catch (e: ApiException) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Toast.makeText(applicationContext, "Sign in failed: "+ e.getStatusCode(), Toast.LENGTH_SHORT).show()
+        else{
+
         }
     }
 
+    private fun updateUI(account: GoogleSignInAccount) {
+        val credential=GoogleAuthProvider.getCredential(account.idToken,null)
+        auth.signInWithCredential(credential).addOnCompleteListener{
+            if(it.isSuccessful){
+startActivity(Intent(applicationContext, UserHomeActivity::class.java))
+                Toast.makeText(applicationContext,"Successful",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(applicationContext,it.exception.toString(),Toast.LENGTH_SHORT).show()
+            }
         }
+    }
+}

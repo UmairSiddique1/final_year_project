@@ -33,4 +33,10 @@
 <!--        &lt;!&ndash;we are setting our window background color to white&ndash;&gt;-->
 <!--        <item name="android:windowBackground">@color/white</item>-->
 <!--    </style>-->
+<!--    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--    </style>-->
 </resources>

@@ -38,7 +38,6 @@ binding.favRv.adapter=likeAdapter
             override fun onDataChange(snapshot: DataSnapshot) {
             for(datasnapShot:DataSnapshot in snapshot.children){
                 val value: FavouriteModel? =datasnapShot.getValue(FavouriteModel::class.java)
-
                 if (value != null) {
                     favouriteList.add(value)
                     likeAdapter.notifyDataSetChanged()
@@ -46,11 +45,9 @@ binding.favRv.adapter=likeAdapter
             }
             }
             override fun onCancelled(error: DatabaseError) {
-              Toast.makeText(context,error.toString(),Toast.LENGTH_SHORT).show()
-            }
 
+            }
         })
         return binding.root
     }
-
 }

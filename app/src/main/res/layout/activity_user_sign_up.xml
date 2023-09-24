@@ -11,16 +11,38 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <ImageView
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/ic_applogo"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"/>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/_20ssp"
+            android:fontFamily="@font/bangers_regular"
+            android:text="User Registration"
+        />
         <EditText
             android:id="@+id/userSignUpETName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:background="@drawable/et_background"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:hint="Name"
             android:inputType="textPersonName" />
 
@@ -28,6 +50,12 @@
             android:id="@+id/userSignUpETEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/et_background"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress"
@@ -37,6 +65,12 @@
             android:id="@+id/userSignUpETPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/et_background"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
@@ -46,21 +80,29 @@
             android:id="@+id/userSignupTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_4sdp"
+            android:layout_margin="@dimen/_4sdp"
             android:gravity="right"
+          android:fontFamily="@font/londrinasolid_light"
             android:text="Already have an account" />
 
         <Button
             android:id="@+id/userSignupBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/londrinasolid_regular"
             android:text="Sign Up" />
 
         <TextView
             android:id="@+id/loginAsSpTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
             android:gravity="center"
-            android:text="Login as Service Provider" />
+         android:fontFamily="@font/londrinasolid_light"
+            android:text="Continue As Service Provider" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

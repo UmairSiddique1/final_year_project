@@ -21,7 +21,8 @@ import com.like.LikeButton
 import com.like.OnLikeListener
 
 
-class UserInterfaceAdapter(val context: Context, private var userInterfaceModel: MutableList<UserInterfaceModel>, private val switchAdapter:Int):RecyclerView.Adapter<UserInterfaceAdapter.ViewHolder>() {
+class UserInterfaceAdapter(val context: Context, private var userInterfaceModel: MutableList<UserInterfaceModel>, private val switchAdapter:Int
+):RecyclerView.Adapter<UserInterfaceAdapter.ViewHolder>() {
     private lateinit var database: DatabaseReference
     private lateinit var imageUrl:String
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,19 +32,18 @@ val hallImage:ImageView=view.findViewById(com.example.bookavenue.R.id.iv_hall)
         val rating:RatingBar=view.findViewById(com.example.bookavenue.R.id.ratingBar)
         val likeBtn= view.findViewById<LikeButton>(com.example.bookavenue.R.id.starbutton)!!
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val view:View=LayoutInflater.from(context).inflate(com.example.bookavenue.R.layout.layout_userinterface,parent,false)
-            return ViewHolder(view)
+        val view:View=LayoutInflater.from(context).inflate(com.example.bookavenue.R.layout.layout_userinterface,parent,false)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder:ViewHolder, position: Int) {
         val userInterfacePosition = userInterfaceModel[position]
         //SETTING HALL NAME AND LOCATION VALUE
         holder.hallName.text = userInterfacePosition.hallName
         holder.cityName.text = userInterfacePosition.location
+        holder.likeBtn.isLiked= userInterfacePosition.likeButton!!
         //STORING RATING VALUE IN SHARED PREFERENCE
-
             holder.rating.onRatingBarChangeListener = null
             holder.rating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
                 if (fromUser) {
@@ -54,7 +54,6 @@ val hallImage:ImageView=view.findViewById(com.example.bookavenue.R.id.iv_hall)
             val value: Float = sharedPref.getFloat("ratings_$position", 1f)
             userInterfacePosition.ratingValue = value
             holder.rating.rating = userInterfacePosition.ratingValue!!
-
 
             // OnClickListener on the like button
             val sharedPreferencesBtn: SharedPreferences = context.getSharedPreferences("save", MODE_PRIVATE)
@@ -69,7 +68,6 @@ val hallImage:ImageView=view.findViewById(com.example.bookavenue.R.id.iv_hall)
                 cityNames.add(userInterfacePosition.location.toString())
             }
         }
-
         val sharedPreferences: SharedPreferences = context.getSharedPreferences("transferData", MODE_PRIVATE)
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putStringSet("hallNames", hallNames.toSet())
@@ -78,8 +76,10 @@ val hallImage:ImageView=view.findViewById(com.example.bookavenue.R.id.iv_hall)
 
             holder.likeBtn.setOnLikeListener(object : OnLikeListener {
                 override fun liked(p0: LikeButton?) {
-
-
+//                    userInterfacePosition.likeButton=true
+//FirebaseDatabase.getInstance().getReference("hall data").child(userInterfacePosition.getUid.toString())
+//    .child("likeButton").setValue(true)
+p0!!.isLiked=true
                     FirebaseDatabase.getInstance().getReference("hall data")
                         .child(userInterfacePosition.getUid.toString()).child("photoUrl")
                         .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -88,12 +88,13 @@ val hallImage:ImageView=view.findViewById(com.example.bookavenue.R.id.iv_hall)
                                     val firstChild: DataSnapshot = snapshot.children.iterator().next()
                                     imageUrl = firstChild.getValue(String::class.java).toString()
                                     database = Firebase.database.reference
-                                    val favouriteModel=FavouriteModel(userInterfacePosition.hallName,userInterfacePosition.location,imageUrl)
+                                    val favouriteModel=FavouriteModel(userInterfacePosition.hallName,userInterfacePosition.location,imageUrl
+                                    ,userInterfacePosition.address,userInterfacePosition.contactNo,userInterfacePosition.menu,userInterfacePosition.perHeadCharges
+                                    ,userInterfacePosition.getUid)
                                     database.child("Favourites")
                                         .child(FirebaseAuth.getInstance().uid.toString())
                                         .child("favourite_$position") // Use position as the child key
                                         .setValue(favouriteModel)
-
                                 }
                             }
                             override fun onCancelled(error: DatabaseError) {
@@ -101,33 +102,24 @@ val hallImage:ImageView=view.findViewById(com.example.bookavenue.R.id.iv_hall)
                             }
                         })
 
-
                     Toast.makeText(context, "Liked", Toast.LENGTH_SHORT).show()
                     Utilss.saveBooleanValue(context,position,true)
-                    p0!!.isLiked = true
-
                 }
 
                 override fun unLiked(p0: LikeButton?) {
+//                    userInterfacePosition.likeButton=false
+//                    FirebaseDatabase.getInstance().getReference("hall data").child(userInterfacePosition.getUid.toString())
+//                        .child("likeButton").setValue(false)
+                    p0!!.isLiked = false
                     Toast.makeText(context, "UnLiked", Toast.LENGTH_SHORT).show()
                  Utilss.saveBooleanValue(context,position,false)
-                    p0!!.isLiked = false
+
                     FirebaseDatabase.getInstance().getReference("Favourites").child(FirebaseAuth.getInstance().currentUser!!.uid)
                         .child("favourite_$position").removeValue()
                 }
             })
            Utilss.getDatabaseImg(context,userInterfacePosition,holder)
         }
-        override fun getItemCount(): Int {
-            return userInterfaceModel.size
-        }
-//    fun filterList(filterList:List<UserInterfaceModel>){
-//userInterfaceModel=filterList
-//        notifyDataSetChanged()
-//    }
-    fun updateList(userInterfaceModelArray: MutableList<UserInterfaceModel>) {
-        this.userInterfaceModel.clear()
-        this.userInterfaceModel.addAll(userInterfaceModelArray)
-        notifyDataSetChanged()
-    }
+        override fun getItemCount(): Int { return userInterfaceModel.size }
+
 }

@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bookavenue.Models.SpUserModel
+import com.example.bookavenue.Models.UserLoginModel
 import com.example.bookavenue.R
 import com.example.bookavenue.serviceProvider.SpChatActivity2
 import com.google.firebase.auth.FirebaseAuth
@@ -36,7 +37,6 @@ val ivUsers:ImageView=view.findViewById(R.id.iv_sp_users)
         val chatRef = FirebaseDatabase.getInstance().getReference("chats")
         val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
         val chatId = currentUserId + spUser.uid
-
         val messagesRef = chatRef.child(chatId).child("messages")
         val lastMessageQuery = messagesRef.orderByKey().limitToLast(1)
         lastMessageQuery.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -55,12 +55,15 @@ val ivUsers:ImageView=view.findViewById(R.id.iv_sp_users)
             }
         })
 
+//       Glide.with(context).load(spUser.profileimg).placeholder(R.drawable.ic_profile).into(holder.ivUsers)
+
         holder.tvUsers.text=spUser.name
-        Glide.with(context).load(spUser.image).placeholder(R.drawable.ic_profile).into(holder.ivUsers)
+        Glide.with(context).load(spUser.profileimg).placeholder(R.drawable.ic_profile).into(holder.ivUsers)
         holder.itemView.setOnClickListener {
             val intent=Intent(context, SpChatActivity2::class.java)
             intent.putExtra("getUid",spUser.uid)
             intent.putExtra("name",spUser.name)
+            intent.putExtra("profileimg",spUser.profileimg)
            context.startActivity(intent)
         }
 
@@ -69,4 +72,5 @@ val ivUsers:ImageView=view.findViewById(R.id.iv_sp_users)
     override fun getItemCount(): Int {
       return spUserModel.size
     }
+
 }

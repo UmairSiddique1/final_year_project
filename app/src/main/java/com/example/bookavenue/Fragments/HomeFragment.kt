@@ -12,21 +12,21 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.*
-import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bookavenue.Adapters.UserInterfaceAdapter
-import com.example.bookavenue.GoogleMap_Activity
 import com.example.bookavenue.Models.UserInterfaceModel
-import com.example.bookavenue.PriceFilterActivity
+import com.example.bookavenue.user.PriceFilterActivity
 import com.example.bookavenue.R
 import com.example.bookavenue.Utilss
 import com.example.bookavenue.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.like.LikeButton
+import com.like.OnLikeListener
 
 class HomeFragment : Fragment() {
     private lateinit var binding:FragmentHomeBinding
@@ -35,15 +35,20 @@ class HomeFragment : Fragment() {
     private lateinit var menuItem: MenuItem
     private lateinit var searchView:androidx.appcompat.widget.SearchView
     private val PERMISSION_CODE = 1
+    private var holder: UserInterfaceAdapter.ViewHolder? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding=FragmentHomeBinding.inflate(inflater, container, false)
+
+        // SETTING THE DATA IN RECYCLERVIEW
         val firebaseDatabase=FirebaseDatabase.getInstance()
         val myRef:DatabaseReference=firebaseDatabase.getReference("hall data")
         binding.rvUserInterface.layoutManager=LinearLayoutManager(context)
         val userInterfaceModelArray:MutableList<UserInterfaceModel> =ArrayList()
         val userInterfaceAdapter= UserInterfaceAdapter(requireContext(),userInterfaceModelArray,0)
        binding.rvUserInterface.adapter=userInterfaceAdapter
+
+        // FETCHING THE CITY OF USER RUNNING THE CODE IN SECONDARY THREAD
 val runnable=Runnable(){
     locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
     if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(requireContext(),
@@ -66,51 +71,38 @@ val runnable=Runnable(){
         val thread=Thread(runnable)
         thread.start()
 
-
+// ONCLICK LISTENER ON THE FILTER BUTTON
         binding.ivFilter.setOnClickListener {
-            startActivity(Intent(context, PriceFilterActivity::class.java))
+            startActivity(Intent(requireContext(), PriceFilterActivity::class.java))
         }
 
-
+        //GETTING DATA FROM DATABASE
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            val sharedPreferences = requireContext().getSharedPreferences("price-range", Context.MODE_PRIVATE)
-            val fromPrice = sharedPreferences.getInt("from", 0)
-            val toPrice = sharedPreferences.getInt("to", 0)
-                val filteredData = mutableListOf<UserInterfaceModel>()
+                val sharedPreferences = context?.getSharedPreferences("price-range", Context.MODE_PRIVATE)
+            val fromPrice = sharedPreferences?.getInt("from", 0)
+            val toPrice = sharedPreferences?.getInt("to", 0)
                 for (snapshot in dataSnapshot.children) {
                     val userInterfaceModel = snapshot.getValue(UserInterfaceModel::class.java)
                     if (userInterfaceModel != null) {
-//                        userInterfaceModelArray.clear()
-//                        if(userInterfaceModel.location.equals(binding.etCityname.text.toString())) {
-//                            Toast.makeText(context,userInterfaceModel.location,Toast.LENGTH_SHORT).show()
-////                            filteredData.add(userInterfaceModel)
-//                            userInterfaceModelArray.add(userInterfaceModel)
-//                        }
-                        if( userInterfaceModel.perHeadCharges.toString().toInt() in (fromPrice + 1) until toPrice){
-//                                filteredData.add(userInterfaceModel)
-//                            userInterfaceModelArray.clear()
-                            userInterfaceModelArray.add(userInterfaceModel)
+                        if (fromPrice != null) {
+                            if( userInterfaceModel.perHeadCharges.toString().toInt() in (fromPrice + 1) until toPrice!!){
+                                userInterfaceModelArray.add(userInterfaceModel)
+                            }
                         }
-//                        else if(userInterfaceModel.location.equals(binding.etCityname.text.toString()) || fromPrice==0 && toPrice==0){
-//                            filteredData.add(userInterfaceModel)
-//                        }
-//                        else if(userInterfaceModel.location!!.isEmpty() ||  fromPrice==0 && toPrice==0 ){
-//                            filteredData.add(userInterfaceModel)
-//                        }
                     } else {
                        Toast.makeText(context,"Nothing found",Toast.LENGTH_SHORT).show()
                     }
                 }
-//                userInterfaceModelArray.clear()
-//                userInterfaceModelArray.addAll(filteredData)
+
                 userInterfaceAdapter.notifyDataSetChanged()
             }
-
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show()
             }
         })
+
+
         return binding.root
     }
 
@@ -119,6 +111,7 @@ val runnable=Runnable(){
         super.onCreate(savedInstanceState)
     }
 
+    // CREATING SEARCH BAR ON FRAGMENT
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.searchmenu,menu)
 menuItem=menu.findItem(R.id.actionSearch)
@@ -129,15 +122,16 @@ menuItem=menu.findItem(R.id.actionSearch)
         searchView.setOnQueryTextListener(object: androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 mySearch(query)
+                searchLocation(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 mySearch(newText)
+                searchLocation(newText)
                 return true
             }
         })
-
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -165,10 +159,8 @@ FirebaseDatabase.getInstance().getReference("hall data").orderByChild("hallName"
       Toast.makeText(requireContext(),"Failure occur in search view",Toast.LENGTH_LONG).show()
         }
     })
-
-        // Order by location
-
-
+    }
+    private fun searchLocation(query: String?){
         FirebaseDatabase.getInstance().getReference("hall data").orderByChild("location").startAt(query).endAt(
             query + "\uf8ff")
             .addValueEventListener(object :ValueEventListener{
@@ -193,4 +185,5 @@ FirebaseDatabase.getInstance().getReference("hall data").orderByChild("hallName"
                 }
             })
     }
+
 }

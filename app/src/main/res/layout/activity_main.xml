@@ -11,24 +11,38 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+<ImageView
+    android:layout_width="@dimen/_150sdp"
+    android:layout_height="@dimen/_150sdp"
+    android:src="@drawable/ic_applogo"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/_5sdp"
+    android:padding="@dimen/_5sdp"/>
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="@dimen/_20ssp"
             android:text="Service Provider Registration"
-            android:textStyle="bold" />
+            android:fontFamily="@font/bangers_regular" />
 
         <EditText
             android:id="@+id/providerSignUpNameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:background="@drawable/et_background"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:hint="Name"
             android:inputType="textPersonName"
             tools:ignore="TouchTargetSizeCheck" />
@@ -37,6 +51,12 @@
             android:id="@+id/providerSignUpEmailET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/et_background"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress"
@@ -46,6 +66,12 @@
             android:id="@+id/providerSignUpPassET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/et_background"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
@@ -55,14 +81,27 @@
             android:id="@+id/providerSignupTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_4sdp"
+            android:layout_margin="@dimen/_4sdp"
             android:gravity="right"
+            android:fontFamily="@font/londrinasolid_light"
             android:text="Already have account" />
 
         <Button
             android:id="@+id/providerSignupBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign up" />
-
+            android:text="Sign Up"
+            android:fontFamily="@font/londrinasolid_regular"
+            android:layout_gravity="center"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/londrinasolid_light"
+    android:text="Continue As User"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/_5sdp"
+    android:textSize="@dimen/_14ssp"
+    android:id="@+id/tv_sp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

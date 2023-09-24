@@ -4,33 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PriceFilterActivity">
+    tools:context=".user.PriceFilterActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ll1"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="From Price"
+            android:text="From Price: "
+         android:fontFamily="@font/londrinasolid_regular"
             android:layout_margin="@dimen/_2sdp"/>
         <EditText
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_50sdp"
             android:hint="Rs 1000"
+            android:padding="@dimen/_2sdp"
+            android:background="@drawable/et_background"
             android:layout_margin="@dimen/_5sdp"
             android:id="@+id/et_from_price"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="To Price"
+            android:text="To Price: "
+           android:fontFamily="@font/londrinasolid_regular"
             android:layout_margin="@dimen/_2sdp"/>
         <EditText
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_50sdp"
             android:hint="Rs 10000"
+            android:padding="@dimen/_2sdp"
+            android:background="@drawable/et_background"
             android:layout_margin="@dimen/_5sdp"
             android:id="@+id/et_to_price"/>
     </LinearLayout>
@@ -40,6 +48,8 @@
         android:layout_below="@id/ll1"
         android:layout_centerInParent="true"
         android:text="Apply"
+        android:layout_margin="@dimen/_2sdp"
+        android:padding="@dimen/_2sdp"
         android:textColor="@color/white"
         android:id="@+id/btn_apply"/>
 </RelativeLayout>

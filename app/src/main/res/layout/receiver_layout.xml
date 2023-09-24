@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/receiver_bg"
         android:layout_margin="5dp"
-        android:padding="5dp"
+        android:textColor="@color/white"
+        android:padding="@dimen/_10sdp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

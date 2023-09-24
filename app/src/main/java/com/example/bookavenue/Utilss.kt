@@ -13,7 +13,9 @@ import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
 import com.example.bookavenue.Adapters.UserInterfaceAdapter
 import com.example.bookavenue.Models.UserInterfaceModel
+import com.example.bookavenue.user.HallDetailActivity
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -66,27 +68,7 @@ class Utilss {
             editor.putBoolean("value$position", value)
             editor.apply()
         }
-        fun setUserCity(editText: EditText,context: Context){
-            val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // Request location permissions if not granted
-                ActivityCompat.requestPermissions(context as Activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 1001)
-                return
-            }
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-                    location?.let {
-                        val geocoder = Geocoder(context, Locale.getDefault())
-                        val addresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
-                        val city = addresses?.get(0)?.locality
-                        editText.setText(city)
-                    }
-                }
-                .addOnFailureListener { exception: Exception ->
-                    Toast.makeText(context, "Error getting location", Toast.LENGTH_SHORT).show()
-                }
-        }
+
        fun getCityName(latitude: Double, longitude: Double,context: Context): String? {
             var cityName: String? = "Not found"
             val geocoder = Geocoder(context, Locale.getDefault())
@@ -106,6 +88,25 @@ class Utilss {
                 i.printStackTrace()
             }
             return cityName
+        }
+
+        fun likeButtonMethod(holder: UserInterfaceAdapter.ViewHolder){
+            FirebaseDatabase.getInstance().getReference("hall data").child(FirebaseAuth.getInstance().currentUser!!.uid)
+                .child("likeButton").addValueEventListener(object:ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                    val data=snapshot.value
+                     if (data==true){
+                       holder.likeBtn.isLiked=true
+                     }
+                     else{
+                         holder.likeBtn.isLiked=false
+                     }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
         }
     }
 

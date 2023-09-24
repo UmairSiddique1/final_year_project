@@ -10,6 +10,8 @@ import android.widget.Toast
 import com.example.bookavenue.Models.UserLoginModel
 import com.example.bookavenue.R
 import com.example.bookavenue.databinding.ActivityMainBinding
+import com.example.bookavenue.user.UserHomeActivity
+import com.example.bookavenue.user.UserSigninActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -43,15 +45,17 @@ startActivity(Intent(applicationContext, ProviderSignInActivity::class.java))
                         Toast.makeText(applicationContext,"Successful",Toast.LENGTH_SHORT).show()
                         val userLogin=UserLoginModel(signUpName,signUpEmail,signUpPass,FirebaseAuth.getInstance().currentUser?.uid.toString())
                         database.child("Service provider").child(FirebaseAuth.getInstance().currentUser?.uid.toString()).setValue(userLogin)
-                        val intent=Intent(applicationContext,ProviderSignInActivity::class.java)
-                        intent.putExtra("getUid",FirebaseAuth.getInstance().currentUser?.uid.toString())
-                        startActivity(intent)
+
+                        startActivity(Intent(applicationContext,ServiceProviderInterface::class.java))
                     } else {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(applicationContext,"Failure occur",Toast.LENGTH_SHORT).show()
                     }
                 }
         }
+
+        binding.tvSp.setOnClickListener {startActivity(Intent(applicationContext,UserSigninActivity::class.java))}
+
     }
     override fun onStart() {
         super.onStart()

@@ -11,15 +11,36 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <ImageView
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/ic_applogo"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"/>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/_20ssp"
+            android:text="User SignIn Form"
+          android:fontFamily="@font/bangers_regular" />
         <EditText
             android:id="@+id/userSigninEmailET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/et_background"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress"
@@ -29,6 +50,12 @@
             android:id="@+id/userSigninPassET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/et_background"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
@@ -39,23 +66,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
+            android:padding="@dimen/_4sdp"
+            android:layout_margin="@dimen/_4sdp"
+            android:fontFamily="@font/londrinasolid_light"
             android:text="Not  have an account" />
 
         <Button
             android:id="@+id/userSigninBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign in" />
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/userGoogleBtn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/userFacebookBtn"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Facebook Sign in" />
+            android:layout_gravity="center"
+            android:fontFamily="@font/londrinasolid_regular"
+            android:text="Sign in" />
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/btn_login"
+    android:fontFamily="@font/londrinasolid_regular"
+    android:text="LogIn With Other Auth Providers"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

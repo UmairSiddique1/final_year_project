@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,12 +16,43 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_applogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_applogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookAVenue"
         tools:targetApi="31">
+        <activity
+            android:name=".user.EditEmailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.EditNameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.AboutUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.FavHallDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.UserProfileImgActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HallImgActivity"
+            android:exported="false"
+            android:parentActivityName=".user.HallDetailActivity" />
+        <activity
+            android:name=".serviceProvider.SpProfileImgActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".user.UserChatActivity"
             android:exported="false">
@@ -28,6 +63,7 @@
         <activity
             android:name=".serviceProvider.SpHallImagesActivity"
             android:exported="false"
+            android:parentActivityName=".serviceProvider.SpProfileInfo"
             android:theme="@style/Theme.BookAVenue">
             <meta-data
                 android:name="android.app.lib_name"
@@ -56,11 +92,11 @@
             android:value="AIzaSyBATY4qKmIoBQpnc3T1bspOBez7bDbvoJs" />
 
         <activity
-            android:name=".GoogleMap_Activity"
+            android:name=".user.GoogleMap_Activity"
             android:exported="false"
-            android:label="@string/title_activity_google_map" />
+            android:label="Google Map" />
         <activity
-            android:name=".PriceFilterActivity"
+            android:name=".user.PriceFilterActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -68,14 +104,16 @@
         </activity>
         <activity
             android:name=".FirebaseUIActivity"
-            android:exported="true">
+            android:exported="true"
+            android:parentActivityName=".user.UserSigninActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".serviceProvider.SpChatActivity2"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".serviceProvider.SpChatActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -95,14 +133,15 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".HallDetailActivity"
-            android:exported="false">
+            android:name=".user.HallDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".user.UserHomeActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".UserHomeActivity"
+            android:name=".user.UserHomeActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -118,12 +157,6 @@
         <activity
             android:name=".user.UserSignUpActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

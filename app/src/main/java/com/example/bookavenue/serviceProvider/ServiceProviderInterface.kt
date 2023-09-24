@@ -115,29 +115,7 @@ uploadImagesToFirebase(selectedImgArray as ArrayList<Uri>)
     }
 
     }
-//    private fun uploadImagesToFirebase(imagesUriList: ArrayList<Uri>) {
-//        val images:kotlin.collections.MutableList<Uri> =kotlin.collections.ArrayList()
-//        val databaseRef = FirebaseDatabase.getInstance().getReference("hall data").child(FirebaseAuth.getInstance().uid.toString())
-//        for (imageUri in imagesUriList) {
-//            imagesUriList.clear()
-//            val imageName = UUID.randomUUID().toString()
-//            val imageRef = storage.reference.child(FirebaseAuth.getInstance().uid.toString()).child("images/$imageName.jpg")
-//            imageRef.putFile(imageUri)
-//                .addOnSuccessListener {
-//                    imageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
-//                        Toast.makeText(applicationContext,"Successfully completed",Toast.LENGTH_SHORT).show()
-////                                            val photoUrl=downloadUrl.toString()
-//                        images.add(downloadUrl)
-//                        for(i in 0 until images.size){
-//                            databaseRef.child("photoUrl").child("img $i").setValue(downloadUrl.toString())
-//                        }
-//                    }
-//                }
-//                .addOnFailureListener {
-//                    Toast.makeText(applicationContext,"Failure occur",Toast.LENGTH_SHORT).show()
-//                }
-//        }
-//    }
+
 private fun uploadImagesToFirebase(imagesUriList: ArrayList<Uri>) {
     val databaseRef = FirebaseDatabase.getInstance().getReference("hall data").child(FirebaseAuth.getInstance().uid.toString())
     for ((index, imageUri) in imagesUriList.withIndex()) {
@@ -146,15 +124,13 @@ private fun uploadImagesToFirebase(imagesUriList: ArrayList<Uri>) {
         imageRef.putFile(imageUri)
             .addOnSuccessListener { uploadTask ->
                 uploadTask.storage.downloadUrl.addOnSuccessListener { downloadUrl ->
-                    Toast.makeText(applicationContext, "Successfully completed", Toast.LENGTH_SHORT).show()
                     val imageUrl = downloadUrl.toString()
                     databaseRef.child("photoUrl").child("img$index").setValue(imageUrl)
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(applicationContext, "Failure occurred", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, it.message.toString(), Toast.LENGTH_SHORT).show()
             }
     }
 }
-
 }
